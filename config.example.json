@@ -1,0 +1,10 @@
+{
+    "BC_STORE_HASH": "xxxxxxxxx",
+    "BC_AUTH_TOKEN": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "SOURCE_DOMAIN": "https://www.example.com/",
+    "NAME_SELECTOR": "#frm_product_info h2",
+    "IMG_SELECTOR": "#big_img (src)",
+    "CATEGORY_SELECTOR": ".detail-part > .bs a:nth-last-child(2)",
+    "PRICE_SELECTOR": "#span_price",
+    "SKU_SELECTOR": "#span_item_no"
+}
