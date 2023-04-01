@@ -19,5 +19,9 @@ Things you will need to adjust in order for this to work:
     - These will limit the amount of URLs to be scraped within the set provided in the first argument of the function. Some merchant sites of course will have ways of identifying crawlers. (I'm still learning about the ins and outs of this, starting with this: https://stackoverflow.com/questions/8404775/how-to-identify-web-crawler) .. 
     - Ergo, the reason for count and limit is to help with the above but also just to make easier to manage when pulling product data into your new sandbox.
 
+####
+
+To execute it once you've added all the necessary configurations, it's just `node index.js` in the terminal :)
+
 ###### Further Description
 I'll add more details about the various modules I've created here later but there are comments to help explain the process, so hopefully that will be enough to get you started on using it in some capacity.
