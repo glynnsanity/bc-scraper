@@ -1,7 +1,8 @@
 #### BigCommerce Scraper
 
 Welcome! Meet BigCommerce's scrappy scraper :) 
-What this does is very straight-forward. Scrapes product pages to get simple data points and throught the BC API creates a product assigned to a category and to a channel (currently only set up to assign to channel 0 though!).
+####
+What this does is very straight-forward. Scrapes product pages to get simple data points and through the BC API creates a product assigned to a category and to a channel (currently only set up to assign to channel 0 though!).
 
 ####
 
