@@ -9,6 +9,11 @@ import { scrapeData } from "./helpers/scrape-data.js";
 import { createCategoryAndProductInBigCommerce } from './helpers/bc-api.js';
 const domain = configJSON.SOURCE_DOMAIN;
 
+// this will be used to filter against the URL structure
+let productFilterFunction = function(url){
+	return url.indexOf('/product/') !== -1;
+};
+
 /*
 Process:
 Check for existing master URL record, if non-existent get all URLs on the site
@@ -26,11 +31,7 @@ if (!fs.existsSync('./urls-dir/allURLs.json')) {
 
 let dedupedURLs = dedupeItems(JSON.parse(urls), ['url']);
 let pathName = 'productURLs';
-let filterFunction = function(url){
-	return url.indexOf('/product/') !== -1;
-};
-
-const productURLSet = createNewURLSet(dedupedURLs, pathName, filterFunction);
+const productURLSet = createNewURLSet(dedupedURLs, pathName, productFilterFunction);
 
 /*
 config:
