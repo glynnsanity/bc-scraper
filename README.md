@@ -1,6 +1,11 @@
 #### BigCommerce Scraper
 
-At the moment, this is fairly rudimentary, however it may be able to help save some clicks getting simple product data from a prospect site into a new POC sandbox. Take note that, for now, the crawling / scraping method here only allows you to filter based on URL structure (like "/product/" existing in the path) so sites without product specific URL structure likely won't fit this solution very well right now, though you could simply adjust the set of URLs that are being crawled manually in "index.js" on the first argument of the `scrapeData` function. Hoping to extend this to other methods at some point.
+Welcome! Meet BigCommerce's scrappy scraper :) 
+What this does is very straight-forward. Scrapes product pages to get simple data points and throught the BC API creates a product assigned to a category and to a channel (currently only set up to assign to channel 0 though!).
+
+####
+
+So yes, at the moment, this is fairly rudimentary, however it may be able to help save some clicks getting simple product data from a prospect site into a new POC sandbox. Take note that, for now, the crawling / scraping method here only allows you to filter based on URL structure (like "/product/" existing in the path) so sites without product specific URL structure likely won't fit this solution very well right now, though you could simply adjust the set of URLs that are being crawled manually in "index.js" on the first argument of the `scrapeData` function. Hoping to extend this to other methods at some point.
 
 ####
 Also as of now, it will only scrape the product name, price, the main image src attribute, the category, and the sku number. For each of these items you will need to find the relevant selector on the PDP and enter it into the config.json file (that you'll need to create based on the example given ... I had issues with .env so I just made this config.json instead. ). Those selectors you enter in the config file will need to follow the pattern documented for [node-scrapy](https://www.npmjs.com/package/node-scrapy)
