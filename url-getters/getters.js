@@ -1,10 +1,11 @@
 import Crawler from 'node-html-crawler';
 import scrapy from 'node-scrapy';
 import fetch from 'node-fetch';
+import fs from 'fs';
 import { writeJsonFile } from 'write-json-file';
 import { dedupeItems } from '../utils/dedupe.js';
 
-export function crawlerURLs(domain) {
+export function crawlerURLGetter(domain, callback) {
     let urlJSONArray = [];
     // const domain = process.argv[2];
     const crawler = new Crawler(domain);
@@ -17,16 +18,16 @@ export function crawlerURLs(domain) {
         console.log(data.result.statusCode, data.url) 
     });
     crawler.on('error', (error) => { console.error(error) });
-    crawler.on('end', () => { console.log(`Finish! All urls on domain ${domain} a crawled!`) });
-
-    const dedupedUrlJSON = dedupeItems(urlJSONArray, ['url']);
-    writeJsonFile('./urls-dir/allURLs.js', dedupedUrlJSON);
-
-    return dedupedUrlJSON;
+    crawler.on('end', () => { 
+        console.log(`Finish! All urls on domain ${domain} a crawled!`) 
+        const dedupedUrlJSON = dedupeItems(urlJSONArray, ['url']);
+        writeJsonFile('./urls-dir/allURLs.js', dedupedUrlJSON);
+        callback(dedupedUrlJSON);
+    });
 
 }
 
-export function scrapeSitemapURLs(siteMapUrl){
+export function scrapeSitemapURLGetter(siteMapUrl, callback){
     const model = {
         urls: [
             'urlset url',
@@ -36,8 +37,6 @@ export function scrapeSitemapURLs(siteMapUrl){
     
         ]
     }
-
-    let urls = '';
 
     fetch(siteMapUrl)
         .then((res) => res.text())
@@ -49,11 +48,13 @@ export function scrapeSitemapURLs(siteMapUrl){
             });
             const dedupedUrlJSON = dedupeItems(urlJSONArray, ['url']);
             writeJsonFile('./urls-dir/allURLs.js', dedupedUrlJSON);
-            urls = dedupedUrlJSON;
+            callback(dedupedUrlJSON);
         })
         .catch(console.error)
-    
-    return urls;
+}
+
+export function fileURLGetter(url, callback){
+    callback(fs.existsSync('./urls-dir/allURLs.json'));
 }
 
 

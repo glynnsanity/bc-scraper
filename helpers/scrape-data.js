@@ -3,10 +3,14 @@ import scrapy from 'node-scrapy';
 import fetch from 'node-fetch';
 
 function cleanData(data){
-    data.price = data.price.replace('Price: $', '');
-    data.sku = data.sku.replace('Item #: ', '');
-    // clean data to match BC API
-    return data;
+    if (data.name === null) {
+        return null;
+    } else {
+        data.price = data.price.replace('Price: $', '');
+        data.sku = data.sku.replace('Item #: ', '');
+        // clean data to match BC API
+        return data;
+    }
 }
 
 export function scrapeData(urls, config, successCallback) {
@@ -16,7 +20,6 @@ export function scrapeData(urls, config, successCallback) {
         .then((body) => {
             const extractedData = scrapy.extract(body, config.model);
             let cleanExtractedData = cleanData(extractedData);
-            console.log('data ', cleanExtractedData);
             successCallback(cleanExtractedData);
         })
         .catch(console.error);
