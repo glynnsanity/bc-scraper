@@ -1,3 +1,7 @@
+#Archived due to npm dependency issues
+
+
+
 #### BigCommerce Scraper
 
 Welcome! Meet BigCommerce's scrappy scraper :) 
