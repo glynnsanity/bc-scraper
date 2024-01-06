@@ -15,7 +15,7 @@ Now with the master list of URLs, create a
 
 const { url, scraper }  = scraperDecision();
 scraper(url, function(urls){
-	let productFilterFunction = function(url){ return url.indexOf('/product/') !== -1; };
+	let productFilterFunction = function(url){ return url.indexOf('/products/') !== -1; };
 	let dedupedURLs = dedupeItems(urls, ['url']);
 	let pathName = 'productURLs';
 	const productURLSet = createNewURLSet(dedupedURLs, pathName, productFilterFunction);

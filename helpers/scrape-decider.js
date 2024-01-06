@@ -1,10 +1,11 @@
 import fs from 'fs';
 import urlExist from "url-exist";
-import configJSON from '../config.json' assert { type: 'json' };
+//import configJSON from '../config.json' assert { type: 'json' };
 import { crawlerURLGetter, scrapeSitemapURLGetter, fileURLGetter } from '../url-getters/getters.js';
-const domain = configJSON.SOURCE_DOMAIN;
+// const domain = configJSON.SOURCE_DOMAIN;
+const domain = 'https://www.abc.virginia.gov'
 const urlFileExists = fs.existsSync('../urls-dir/allURLs.json');
-const siteMapUrlExists = await urlExist(`${domain}sitemap.xml`);
+const siteMapUrlExists = false
 const siteMapUrl = `${domain}sitemap.xml`;
 
 

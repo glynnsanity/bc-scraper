@@ -8,7 +8,13 @@ import { dedupeItems } from '../utils/dedupe.js';
 export function crawlerURLGetter(domain, callback) {
     let urlJSONArray = [];
     // const domain = process.argv[2];
-    const crawler = new Crawler(domain);
+    const crawler = new Crawler({
+        protocol: 'https:', // default 'http:'
+        domain: 'birds-eye.mybigcommerce.com', // default 'example.com'
+        limitForConnections: 10, // number of simultaneous connections, default 10
+        limitForRedirects: 5, // possible number of redirects, default 5
+        timeout: 300 // number of milliseconds between pending connection, default 300
+    });
 
     crawler.crawl();
     crawler.on('data', (data) => { 
